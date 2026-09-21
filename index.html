@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>SussexForex — Cross-border finance</title>
+<title>SussexForex — Global Currency</title>
 <style>
 @font-face {
   font-family: 'PJS';
@@ -163,25 +163,185 @@ body {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%) translateX(calc(-23 * var(--u)));
+  transform: translate(-50%, -50%) translateX(calc(-38 * var(--u)));
   display: flex;
   align-items: center;
   gap: calc(24.3 * var(--u));
   white-space: nowrap;
 }
 
-.nav-links a {
-  color: var(--ink-muted);
-  text-decoration: none;
-  font-size: calc(11.5 * var(--u));
-  font-weight: 500;
-  letter-spacing: calc(-0.15 * var(--u));
-  line-height: 1;
-  transition: color 0.18s ease;
+.nav-item {
+  position: relative;
 }
 
-.nav-links a:hover {
+.nav-links .nav-trigger {
+  color: var(--ink-muted);
+  text-decoration: none;
+  font-size: calc(10.2 * var(--u));
+  font-weight: 500;
+  letter-spacing: calc(-0.12 * var(--u));
+  line-height: 1;
+  transition: color 0.18s ease;
+  background: none;
+  border: 0;
+  padding: calc(6 * var(--u)) 0;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.nav-links .nav-trigger:hover,
+.nav-links .nav-item.is-active .nav-trigger {
   color: #fff;
+}
+
+.nav-mega-wrap {
+  position: absolute;
+  left: max(20px, calc(16 * var(--u)));
+  right: max(20px, calc(16 * var(--u)));
+  top: calc(67 * var(--u) - 4px);
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(calc(-6 * var(--u)));
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+}
+
+.nav-mega-wrap.is-open {
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.nav-mega {
+  max-height: min(calc(100dvh - 64px), calc(680 * var(--u)));
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: rgba(10, 10, 12, 0.9);
+  -webkit-backdrop-filter: blur(22px);
+  backdrop-filter: blur(22px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: calc(18 * var(--u));
+  padding: calc(32 * var(--u)) calc(36 * var(--u)) calc(36 * var(--u));
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+
+.nav-panel {
+  display: none;
+}
+
+.nav-panel.is-visible {
+  display: block;
+  animation: panelIn 0.22s ease both;
+}
+
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(calc(4 * var(--u)));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.nav-panel-kicker {
+  margin: 0 0 calc(8 * var(--u));
+  font-size: calc(11.5 * var(--u));
+  font-weight: 600;
+  letter-spacing: calc(0.2 * var(--u));
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.nav-panel-sub {
+  margin: 0 0 calc(16 * var(--u));
+  font-size: calc(13 * var(--u));
+  font-weight: 500;
+  letter-spacing: calc(-0.1 * var(--u));
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.nav-panel-title {
+  margin: 0 0 calc(22 * var(--u));
+  font-size: calc(28 * var(--u));
+  font-weight: 600;
+  letter-spacing: calc(-0.4 * var(--u));
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.nav-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(20 * var(--u)) calc(28 * var(--u));
+}
+
+.nav-panel-block h4 {
+  margin: 0 0 calc(6 * var(--u));
+  font-size: calc(15.5 * var(--u));
+  font-weight: 600;
+  letter-spacing: calc(-0.22 * var(--u));
+  color: #fff;
+}
+
+.nav-panel-block p {
+  margin: 0;
+  font-size: calc(14 * var(--u));
+  font-weight: 300;
+  line-height: calc(21 * var(--u));
+  letter-spacing: calc(-0.15 * var(--u));
+  color: rgba(246, 246, 246, 0.88);
+}
+
+.nav-panel-prose {
+  margin: 0;
+  font-size: calc(16 * var(--u));
+  font-weight: 300;
+  line-height: calc(26 * var(--u));
+  letter-spacing: calc(-0.2 * var(--u));
+  color: #f0f0f0;
+  max-width: calc(760 * var(--u));
+}
+
+.nav-panel-prose p {
+  margin: 0 0 calc(12 * var(--u));
+}
+
+.nav-panel-prose p:last-child {
+  margin-bottom: 0;
+}
+
+.nav-panel-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(16 * var(--u));
+}
+
+.nav-metric {
+  padding: calc(20 * var(--u)) calc(22 * var(--u));
+  border-radius: calc(14 * var(--u));
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.nav-metric strong {
+  display: block;
+  font-size: calc(17.5 * var(--u));
+  font-weight: 600;
+  letter-spacing: calc(-0.28 * var(--u));
+  color: #fff;
+  margin-bottom: calc(4 * var(--u));
+}
+
+.nav-metric span {
+  font-size: calc(11.5 * var(--u));
+  font-weight: 300;
+  color: rgba(246, 246, 246, 0.82);
+  line-height: 1.35;
 }
 
 .nav-actions {
@@ -217,6 +377,25 @@ body {
 .btn-login:hover {
   background: #232323;
   color: #fff;
+}
+
+.btn-whatsapp {
+  width: calc(28 * var(--u));
+  height: calc(28 * var(--u));
+  border-radius: calc(14 * var(--u));
+  background: #25d366;
+  color: #fff;
+  transition: background 0.18s ease, transform 0.18s ease;
+}
+
+.btn-whatsapp:hover {
+  background: #20bd5a;
+}
+
+.btn-whatsapp svg {
+  width: calc(15 * var(--u));
+  height: calc(15 * var(--u));
+  display: block;
 }
 
 .btn-nav-start {
@@ -409,7 +588,7 @@ html.anim .ln-i {
 }
 
 html.anim .logo,
-html.anim .nav-links a,
+html.anim .nav-links .nav-trigger,
 html.anim .nav-actions .btn,
 html.anim .burger,
 html.anim .sub,
@@ -418,7 +597,7 @@ html.anim .ctas .btn {
 }
 
 html.anim .logo,
-html.anim .nav-links a,
+html.anim .nav-links .nav-trigger,
 html.anim .nav-actions .btn,
 html.anim .sub,
 html.anim .ctas .btn {
@@ -507,27 +686,27 @@ html.anim.go .logo {
   animation: logoIn 0.62s var(--e-soft) 0.46s both;
 }
 
-html.anim.go .nav-links a {
+html.anim.go .nav-links .nav-trigger {
   animation: liftIn 0.55s var(--e-soft) both;
 }
 
-html.anim.go .nav-links a:nth-child(1) {
+html.anim.go .nav-links .nav-item:nth-child(1) .nav-trigger {
   animation-delay: 0.54s;
 }
 
-html.anim.go .nav-links a:nth-child(2) {
+html.anim.go .nav-links .nav-item:nth-child(2) .nav-trigger {
   animation-delay: 0.585s;
 }
 
-html.anim.go .nav-links a:nth-child(3) {
+html.anim.go .nav-links .nav-item:nth-child(3) .nav-trigger {
   animation-delay: 0.63s;
 }
 
-html.anim.go .nav-links a:nth-child(4) {
+html.anim.go .nav-links .nav-item:nth-child(4) .nav-trigger {
   animation-delay: 0.675s;
 }
 
-html.anim.go .nav-links a:nth-child(5) {
+html.anim.go .nav-links .nav-item:nth-child(5) .nav-trigger {
   animation-delay: 0.72s;
 }
 
@@ -535,7 +714,7 @@ html.anim.go .sub {
   animation: subIn 0.85s var(--e-reveal) 0.58s both;
 }
 
-html.anim.go .btn-login {
+html.anim.go .btn-whatsapp {
   animation: pillIn 0.55s var(--e-soft) 0.68s both;
 }
 
@@ -571,7 +750,8 @@ html.anim.go .ctas .btn-ghost {
   }
 
   .nav-links,
-  .nav-actions {
+  .nav-actions,
+  .nav-mega-wrap {
     display: none;
   }
 
@@ -651,9 +831,123 @@ html.anim.go .ctas .btn-ghost {
     transition: background 0.18s ease, color 0.18s ease;
   }
 
-  .menu a:hover {
+  .menu a:hover,
+  .menu .menu-trigger:hover {
     background: rgba(255, 255, 255, 0.06);
     color: #fff;
+  }
+
+  .menu .menu-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    text-align: left;
+    color: var(--ink-muted);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: calc(-0.15 * var(--u));
+    padding: 12px 14px;
+    border-radius: 12px;
+    transition: background 0.18s ease, color 0.18s ease;
+    background: none;
+    border: 0;
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  .menu .menu-trigger.is-open {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .menu .menu-trigger::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.18s ease;
+    flex: 0 0 auto;
+    margin-left: 8px;
+    opacity: 0.7;
+  }
+
+  .menu .menu-trigger.is-open::after {
+    transform: rotate(-135deg);
+  }
+
+  .menu-detail {
+    display: none;
+    margin: 4px 8px 10px;
+    padding: 14px 12px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    max-height: min(50vh, 360px);
+    overflow: auto;
+  }
+
+  .menu-detail.is-open {
+    display: block;
+  }
+
+  .menu-detail .nav-panel-kicker {
+    font-size: 11px;
+    margin-bottom: 6px;
+  }
+
+  .menu-detail .nav-panel-title {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .menu-detail .nav-panel-grid,
+  .menu-detail .nav-panel-metrics {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .menu-detail .nav-panel-block h4 {
+    font-size: 14px;
+  }
+
+  .menu-detail .nav-panel-block p,
+  .menu-detail .nav-panel-prose,
+  .menu-detail .nav-metric span {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .menu-detail .nav-metric strong {
+    font-size: 15px;
+  }
+
+  .menu-whatsapp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #25d366;
+    color: #fff;
+    margin: 6px 8px 0;
+    padding: 13px 16px;
+    border-radius: 14px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .menu-whatsapp:hover {
+    background: black;
+    color: #fff;
+  }
+
+  .menu-whatsapp svg {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 auto;
   }
 
   .menu .divider {
@@ -842,12 +1136,24 @@ html.anim.go .ctas .btn-ghost {
   }
 
   html.anim .logo,
-  html.anim .nav-links a,
+  html.anim .nav-links .nav-trigger,
   html.anim .nav-actions .btn,
   html.anim .burger,
   html.anim .sub,
   html.anim .ctas .btn {
     opacity: 1;
+  }
+}
+
+@media (min-width: 1161px) {
+  .nav-mega-wrap {
+    display: block;
+  }
+
+  .ctas {
+    flex-direction: column;
+    align-items: center;
+    gap: calc(11 * var(--u));
   }
 }
 
@@ -925,54 +1231,170 @@ html.anim.go .ctas .btn-ghost {
 
   <header class="nav">
     <a class="logo" href="#">SussexForex</a>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="#">Products</a>
-      <a href="#">Pricing</a>
-      <a href="#">Developers</a>
-      <a href="#">Resources</a>
-      <a href="#">Contact Sales</a>
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <div class="nav-item" data-panel="panel-who">
+        <button type="button" class="nav-trigger" aria-expanded="false" aria-controls="panel-who">WHO WE SERVE</button>
+      </div>
+      <div class="nav-item" data-panel="panel-why">
+        <button type="button" class="nav-trigger" aria-expanded="false" aria-controls="panel-why">WHY CHOOSE US</button>
+      </div>
+      <div class="nav-item" data-panel="panel-about">
+        <button type="button" class="nav-trigger" aria-expanded="false" aria-controls="panel-about">ABOUT US</button>
+      </div>
+      <div class="nav-item" data-panel="panel-services">
+        <button type="button" class="nav-trigger" aria-expanded="false" aria-controls="panel-services">SERVICES</button>
+      </div>
+      <div class="nav-item" data-panel="panel-results">
+        <button type="button" class="nav-trigger" aria-expanded="false" aria-controls="panel-results">RESULTS &amp; CREDIBILITY</button>
+      </div>
     </nav>
     <div class="nav-actions">
-      <a class="btn btn-login" href="#">Login</a>
-      <a class="btn btn-nav-start" href="#">Get Started
-        <svg class="arw" viewBox="0 0 12 10" fill="none" aria-hidden="true">
-          <path d="M0.8 5h10M7.1 1.4 10.9 5l-3.8 3.6" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
+      <a class="btn btn-whatsapp" href="https://wa.me/447721770779" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp +44 7721 770779">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.881 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
         </svg>
       </a>
     </div>
     <button type="button" class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><span></span></button>
   </header>
 
+  <div class="nav-mega-wrap" id="navMegaWrap" aria-hidden="true">
+    <div class="nav-mega" id="navMega">
+      <div class="nav-panel" id="panel-who" role="region" aria-label="Who we serve">
+        <p class="nav-panel-kicker">Who we serve</p>
+        <h2 class="nav-panel-title">Built for a Global Clientele</h2>
+        <div class="nav-panel-grid">
+          <div class="nav-panel-block">
+            <h4>Global Travelers &amp; Students</h4>
+            <p>Exceptional exchange rates and personalized support wherever life takes you.</p>
+          </div>
+          <div class="nav-panel-block">
+            <h4>Corporate &amp; Enterprise</h4>
+            <p>Efficient cross-border payments and strategic currency solutions for multinational operations.</p>
+          </div>
+          <div class="nav-panel-block">
+            <h4>Importers &amp; Exporters</h4>
+            <p>Optimize international settlements with precision-driven forex services.</p>
+          </div>
+          <div class="nav-panel-block">
+            <h4>Investors &amp; HNIs</h4>
+            <p>Premium currency solutions designed to safeguard and maximize value.</p>
+          </div>
+        </div>
+      </div>
+      <div class="nav-panel" id="panel-why" role="region" aria-label="Why choose us">
+        <p class="nav-panel-kicker">Why choose us</p>
+        <h2 class="nav-panel-title">The Difference Is in the Details</h2>
+        <p class="nav-panel-sub">Key Features</p>
+        <div class="nav-panel-grid">
+          <div class="nav-panel-block">
+            <h4>Institutional-Grade Exchange Rates</h4>
+            <p>Access highly competitive rates designed to maximize value.</p>
+          </div>
+          <div class="nav-panel-block">
+            <h4>Dedicated Relationship Managers</h4>
+            <p>One point of contact. Expert guidance at every stage.</p>
+          </div>
+          <div class="nav-panel-block">
+            <h4>Fast Global Settlements</h4>
+            <p>Efficient execution across major international currencies.</p>
+          </div>
+          <div class="nav-panel-block">
+            <h4>Complete Transparency</h4>
+            <p>No hidden costs. No surprises. Just clarity.</p>
+          </div>
+          <div class="nav-panel-block">
+            <h4>Security First</h4>
+            <p>Every transaction handled with the highest standards of compliance and protection.</p>
+          </div>
+        </div>
+      </div>
+      <div class="nav-panel" id="panel-about" role="region" aria-label="About Sussex Forex">
+        <p class="nav-panel-kicker">At Sussex Forex</p>
+        <div class="nav-panel-prose">
+          <p>We believe foreign exchange should be more than a transaction.</p>
+          <p>It should be a strategic advantage.</p>
+          <p>Through precision, discretion, and personalized service, we deliver currency solutions tailored to a world without borders.</p>
+        </div>
+      </div>
+      <div class="nav-panel" id="panel-services" role="region" aria-label="Services">
+        <p class="nav-panel-kicker">Services</p>
+        <h2 class="nav-panel-title">Curated Currency Solutions</h2>
+        <div class="nav-panel-grid">
+          <div class="nav-panel-block">
+            <h4>Student Remittances</h4>
+            <p>Reliable international education payments.</p>
+          </div>
+          <div class="nav-panel-block">
+            <h4>Foreign Currency Exchange</h4>
+            <p>Access major global currencies at preferred rates.</p>
+          </div>
+          <div class="nav-panel-block">
+            <h4>International Money Transfers</h4>
+            <p>Fast, secure transfers for personal and business requirements.</p>
+          </div>
+          <div class="nav-panel-block">
+            <h4>Trade Payments</h4>
+            <p>Streamlined solutions for imports and exports.</p>
+          </div>
+          <div class="nav-panel-block">
+            <h4>Corporate Forex</h4>
+            <p>Customized treasury and payment solutions.</p>
+          </div>
+          <div class="nav-panel-block">
+            <h4>Currency Risk Management</h4>
+            <p>Protect value through strategic currency planning.</p>
+          </div>
+        </div>
+      </div>
+      <div class="nav-panel" id="panel-results" role="region" aria-label="Results and credibility">
+        <p class="nav-panel-kicker">Results &amp; credibility</p>
+        <h2 class="nav-panel-title">Trusted Across Borders</h2>
+        <div class="nav-panel-metrics">
+          <div class="nav-metric"><strong>50+ Currencies Supported</strong></div>
+          <div class="nav-metric"><strong>1000+ Global Clients Served</strong></div>
+          <div class="nav-metric"><strong>24/7 Dedicated Support</strong></div>
+          <div class="nav-metric"><strong>100% Transparent Transactions</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <nav class="menu" id="menu" aria-label="Mobile">
-    <a href="#">Products</a>
-    <a href="#">Pricing</a>
-    <a href="#">Developers</a>
-    <a href="#">Resources</a>
-    <a href="#">Contact Sales</a>
+    <button type="button" class="menu-trigger" data-panel="panel-who">WHO WE SERVE</button>
+    <button type="button" class="menu-trigger" data-panel="panel-why">WHY CHOOSE US</button>
+    <button type="button" class="menu-trigger" data-panel="panel-about">ABOUT US</button>
+    <button type="button" class="menu-trigger" data-panel="panel-services">SERVICES</button>
+    <button type="button" class="menu-trigger" data-panel="panel-results">RESULTS &amp; CREDIBILITY</button>
+    <div class="menu-detail" id="menuDetail" hidden></div>
     <div class="divider"></div>
-    <a href="#">Login</a>
-    <a class="m-start" href="#">Get Started
-      <svg class="arw" viewBox="0 0 12 10" fill="none" aria-hidden="true">
-        <path d="M0.8 5h10M7.1 1.4 10.9 5l-3.8 3.6" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
+    <a class="menu-whatsapp" href="https://wa.me/447721770779" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.881 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
       </svg>
+      WhatsApp 
     </a>
   </nav>
 
   <div class="hero-inner">
     <h1>
-      <span class="ln"><span class="ln-i">Cross-border</span></span>
-      <span class="ln"><span class="ln-i">finance</span></span>
+      <span class="ln"><span class="ln-i">Global Currency</span></span>
+      
     </h1>
-    <p class="sub">Accept payments, manage and custody your assets with ease,<br>
-      enjoy seamless on/off-ramping between cryptocurrencies and fiat,<br>
-      and explore integrated eCommerce solutions.</p>
+    <p class="sub">Trusted execution </p>
+    <p class="sub">Competitive pricing. </p>
+    <p class="sub">Seamless global transactions</p>
+    <p class="sub">Tailored foreign exchange solutions for 
+      international students, businesses, investors, and global citizens 
+      who expect more</p>
+
     <div class="ctas">
-      <a class="btn btn-lg btn-primary" href="#">Get Started
+      <a class="btn btn-lg btn-primary" href="#">Access Elite Rates
         <svg class="arw" viewBox="0 0 12 10" fill="none" aria-hidden="true">
           <path d="M0.8 5h10M7.1 1.4 10.9 5l-3.8 3.6" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
-      <a class="btn btn-lg btn-ghost" href="#">Contact Sales
+      <a class="btn btn-lg btn-ghost" href="#">Speak with a Currency Advisor
         <svg class="arw" viewBox="0 0 12 10" fill="none" aria-hidden="true">
           <path d="M0.8 5h10M7.1 1.4 10.9 5l-3.8 3.6" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
@@ -983,6 +1405,132 @@ html.anim.go .ctas .btn-ghost {
 
 <script>
 (function () {
+  var navLinks = document.getElementById('navLinks');
+  var megaWrap = document.getElementById('navMegaWrap');
+  var panels = document.querySelectorAll('#navMega .nav-panel');
+  var navItems = document.querySelectorAll('.nav-item');
+  var desktopNav = window.matchMedia('(min-width: 1161px)');
+  var closeTimer = null;
+
+  function showDesktopPanel(id) {
+    if (!megaWrap) return;
+    panels.forEach(function (panel) {
+      panel.classList.toggle('is-visible', panel.id === id);
+    });
+    navItems.forEach(function (item) {
+      var on = item.getAttribute('data-panel') === id;
+      item.classList.toggle('is-active', on);
+      var trigger = item.querySelector('.nav-trigger');
+      if (trigger) trigger.setAttribute('aria-expanded', on ? 'true' : 'false');
+    });
+    megaWrap.classList.add('is-open');
+    megaWrap.setAttribute('aria-hidden', 'false');
+  }
+
+  function hideDesktopPanels() {
+    if (!megaWrap) return;
+    megaWrap.classList.remove('is-open');
+    megaWrap.setAttribute('aria-hidden', 'true');
+    panels.forEach(function (panel) {
+      panel.classList.remove('is-visible');
+    });
+    navItems.forEach(function (item) {
+      item.classList.remove('is-active');
+      var trigger = item.querySelector('.nav-trigger');
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  function scheduleDesktopClose() {
+    clearTimeout(closeTimer);
+    closeTimer = setTimeout(hideDesktopPanels, 130);
+  }
+
+  function cancelDesktopClose() {
+    clearTimeout(closeTimer);
+  }
+
+  if (navLinks && megaWrap && navItems.length) {
+    navItems.forEach(function (item) {
+      item.addEventListener('mouseenter', function () {
+        if (!desktopNav.matches) return;
+        cancelDesktopClose();
+        showDesktopPanel(item.getAttribute('data-panel'));
+      });
+      var trigger = item.querySelector('.nav-trigger');
+      if (trigger) {
+        trigger.addEventListener('focus', function () {
+          if (!desktopNav.matches) return;
+          cancelDesktopClose();
+          showDesktopPanel(item.getAttribute('data-panel'));
+        });
+      }
+    });
+
+    navLinks.addEventListener('mouseleave', function () {
+      if (!desktopNav.matches) return;
+      scheduleDesktopClose();
+    });
+
+    megaWrap.addEventListener('mouseenter', cancelDesktopClose);
+    megaWrap.addEventListener('mouseleave', function () {
+      if (!desktopNav.matches) return;
+      scheduleDesktopClose();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && desktopNav.matches && megaWrap.classList.contains('is-open')) {
+        hideDesktopPanels();
+      }
+    });
+  }
+})();
+
+(function () {
+  var menu = document.getElementById('menu');
+  var menuDetail = document.getElementById('menuDetail');
+  if (!menu || !menuDetail) return;
+
+  var mobileTriggers = menu.querySelectorAll('.menu-trigger');
+  var openMobileTrigger = null;
+
+  function resetMobilePanel() {
+    menuDetail.classList.remove('is-open');
+    menuDetail.hidden = true;
+    menuDetail.innerHTML = '';
+    mobileTriggers.forEach(function (trigger) {
+      trigger.classList.remove('is-open');
+    });
+    openMobileTrigger = null;
+  }
+
+  mobileTriggers.forEach(function (trigger) {
+    trigger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var panelId = trigger.getAttribute('data-panel');
+      var source = document.getElementById(panelId);
+      if (!source) return;
+
+      if (openMobileTrigger === trigger && menuDetail.classList.contains('is-open')) {
+        resetMobilePanel();
+        return;
+      }
+
+      mobileTriggers.forEach(function (t) {
+        t.classList.remove('is-open');
+      });
+      trigger.classList.add('is-open');
+      openMobileTrigger = trigger;
+      menuDetail.innerHTML = source.innerHTML;
+      menuDetail.classList.add('is-open');
+      menuDetail.hidden = false;
+    });
+  });
+
+  window.resetMobileNavPanel = resetMobilePanel;
+})();
+
+(function () {
   var burger = document.getElementById('burger');
   var menu = document.getElementById('menu');
   if (!burger || !menu) return;
@@ -991,6 +1539,7 @@ html.anim.go .ctas .btn-ghost {
     menu.classList.toggle('open', open);
     burger.setAttribute('aria-expanded', open ? 'true' : 'false');
     burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    if (!open && window.resetMobileNavPanel) window.resetMobileNavPanel();
   }
 
   burger.addEventListener('click', function (e) {
@@ -999,6 +1548,7 @@ html.anim.go .ctas .btn-ghost {
   });
 
   menu.addEventListener('click', function (e) {
+    if (e.target.closest('.menu-trigger')) return;
     if (e.target.closest('a')) set(false);
   });
 
